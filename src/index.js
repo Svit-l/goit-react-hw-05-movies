@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-// import App from 'components/App';
-import Layout from 'components/Layout';
+import App from 'components/App';
+// import Layout from 'components/Layout';
 import HomePage from './components/HomePage';
 import Movies from './components/Movies/Movies';
 import OneMovie from './components/OneMovie';
@@ -19,12 +19,55 @@ ReactDOM.render(
     <BrowserRouter basename="/goit-react-hw-05-movies/">
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
+          <Route path="/" element={<App />}>
+            <Route element={<HomePage />}>
+              <Route
+                index
+                element={
+                  <main style={{ padding: '1rem' }}>
+                    <p>Select a movie</p>
+                  </main>
+                }
+              />
+              <Route path=":movieId" element={<OneMovie />} />
+              <Route
+                path="*"
+                element={
+                  <main style={{ padding: '1rem' }}>
+                    <p>There's nothing here!</p>
+                  </main>
+                }
+              />
+            </Route>
             <Route path="/movies" element={<Movies />}>
-              <Route path="/movies/one-movie" element={<OneMovie />}>
-                <Route path="/movies/one-movie/cast" element={<CastList />} />
-                <Route path="/movies/one-movie/reviews" element={<Reviews />} />
+              <Route
+                index
+                element={
+                  <main style={{ padding: '1rem' }}>
+                    <p>Select a movie</p>
+                  </main>
+                }
+              />
+              <Route path=":movieId" element={<OneMovie />} />
+              <Route
+                path="*"
+                element={
+                  <main style={{ padding: '1rem' }}>
+                    <p>There's nothing here!</p>
+                  </main>
+                }
+              />
+              <Route path="/movies/:movieId" element={<OneMovie />}>
+                <Route
+                  index
+                  path="/movies/:movieId/cast"
+                  element={<CastList />}
+                />
+                <Route
+                  index
+                  path="/movies/:movieId/reviews"
+                  element={<Reviews />}
+                />
               </Route>
             </Route>
           </Route>

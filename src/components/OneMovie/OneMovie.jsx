@@ -1,5 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import movies from '../../movies.json';
+import movie from '../../oneMovie.json';
+
+const POSTER_URL = 'https://image.tmdb.org/t/p/original/';
+// https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=671e99770535147b22bbc4f5e6f1ab11&language=en-US
 
 const Link = styled(NavLink)`
   color: #000000;
@@ -10,21 +15,35 @@ const Link = styled(NavLink)`
   }
 `;
 
-function OneMovie(poster, title, userScore, overview, genres) {
+function getMovie(id) {
+  return movies.find(movie => movie.id === id);
+}
+
+function OneMovie() {
+  let navigate = useNavigate();
+  let params = useParams();
+  let movie = getMovie(parseInt(params.movieId, 10));
+
+  const movieTitle = movie.title ? movie.title : movie.name;
+
   return (
     <div>
-      <button type="button">Go to homepage{<Link to="/"></Link>}</button>
-      <img src="../../../public/logo512.png" alt={title + 'poster'} />
+      <button type="button">{<Link to="/">Go to homepage</Link>}</button>
+      <img
+        src={POSTER_URL + movie['poster_path']}
+        alt={movieTitle + ' poster'}
+        width="200"
+      />
       <div className="description">
-        <h1>{title}</h1>
-        <p>User score:{userScore}</p>
+        <h1>{movieTitle}</h1>
+        <p>User vote average: {movie['vote_average']}</p>
         <div>
           <h2>Overview</h2>
-          <p>{overview}</p>
+          <p>{movie.overview}</p>
         </div>
         <div>
           <h3>Genres</h3>
-          <p>{genres}</p>
+          <p>{movie.genre_ids}</p>
         </div>
       </div>
       <div>
@@ -34,7 +53,6 @@ function OneMovie(poster, title, userScore, overview, genres) {
             <Link to="/cast">Cast</Link>
           </li>
           <li>
-            Reviews
             <Link to="/reviews">Reviews</Link>
           </li>
         </ul>
