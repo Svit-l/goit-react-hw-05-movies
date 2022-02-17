@@ -36,8 +36,8 @@ p {
 ul,
 ol {
   padding: 0;
-    margin: 0;
-  /* list-style: none; */
+  margin: 0;
+  list-style: square;
 }
 
 img {
@@ -49,6 +49,10 @@ img {
 a {
   text-decoration: none;
   /* outline: none; */
+}
+
+button{
+  display:block;
 }
 `;
 
