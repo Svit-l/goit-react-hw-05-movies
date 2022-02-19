@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types';
-import CastItem from './CastItem';
+// import CastItem from './CastItem';
 // import { CastList } from './CastStyled';
 import styled from 'styled-components';
 
@@ -9,19 +9,20 @@ export const CastListWrap = styled.ul`
 
 const CastList = ({ actors }) => {
   return (
-    <CastListWrap>
-      {actors.map(actor => {
-        const { id, avatar, name, character } = actor;
-        return (
-          <CastItem
-            key={id}
-            avatar={avatar}
-            name={name}
-            character={character}
-          />
-        );
-      })}
-    </CastListWrap>
+    <p>Actors</p>
+    // <CastListWrap>
+    //   {actors.map(actor => {
+    //     const { id, avatar, name, character } = actor;
+    //     return (
+    //       <CastItem
+    //         key={id}
+    //         avatar={avatar}
+    //         name={name}
+    //         character={character}
+    //       />
+    //     );
+    //   })}
+    // </CastListWrap>
   );
 };
 

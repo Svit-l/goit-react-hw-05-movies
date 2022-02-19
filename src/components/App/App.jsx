@@ -20,15 +20,11 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        {/* <Route
-            index
-            element={
-              <main style={{ padding: '1rem' }}>
-                <p>Select a movie</p>
-              </main>
-            }
-          /> */}
-        <Route path=":movieId" element={<OneMovie />} />
+        <Route path="movies" element={<Movies />} />
+        <Route path="movies/:movieId" element={<OneMovie />}>
+          <Route path="cast" element={<CastList />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
         <Route
           path="*"
           element={
@@ -37,26 +33,6 @@ const App = () => {
             </main>
           }
         />
-
-        <Route path="/movies" element={<Movies />}>
-          <Route path=":movieId" element={<OneMovie />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-          <Route path="/movies/:movieId" element={<OneMovie />}>
-            <Route index path="/movies/:movieId/cast" element={<CastList />} />
-            <Route
-              index
-              path="/movies/:movieId/reviews"
-              element={<Reviews />}
-            />
-          </Route>
-        </Route>
       </Route>
     </Routes>
   );

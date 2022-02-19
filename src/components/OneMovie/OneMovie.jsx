@@ -30,12 +30,13 @@ function OneMovie() {
   return (
     <div>
       <button type="button">{<Link to="/">Go to homepage</Link>}</button>
-      <Outlet />
+
       <img
         src={POSTER_URL + movie['poster_path']}
         alt={movieTitle + ' poster'}
         width="200"
       />
+
       <div className="description">
         <h1>{movieTitle}</h1>
         <p>User vote average: {movie['vote_average']}</p>
@@ -49,16 +50,23 @@ function OneMovie() {
         </div>
       </div>
       <div>
+        <hr />
+
         <h2>Additional information</h2>
+
         <ul>
           <li>
-            <Link to="/cast">Cast</Link>
+            <Link to="cast">Cast</Link>
           </li>
           <li>
-            <Link to="/reviews">Reviews</Link>
+            <Link to="reviews">Reviews</Link>
           </li>
         </ul>
       </div>
+
+      <hr />
+
+      <Outlet />
     </div>
   );
 }

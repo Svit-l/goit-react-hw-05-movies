@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './SearchbarStyled';
 
 const { Searchbar, Form, FormButton, ButtonLabel, FormInput } = styles;
