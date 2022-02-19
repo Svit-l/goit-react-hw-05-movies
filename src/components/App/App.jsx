@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 // import { useState, useEffect, useCallback } from 'react';
 // import styled from 'styled-components';
 // import GlobalStyle from 'common/GlobalStyles';
@@ -25,15 +25,8 @@ const App = () => {
           <Route path="cast" element={<CastList />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
-        <Route
-          path="*"
-          element={
-            <main style={{ padding: '1rem' }}>
-              <p>There's nothing here!</p>
-            </main>
-          }
-        />
       </Route>
+      <Route path="*" element={<HomePage />} />
     </Routes>
   );
 };

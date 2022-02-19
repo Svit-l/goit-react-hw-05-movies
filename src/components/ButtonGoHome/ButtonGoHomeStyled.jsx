@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 const Button = styled(NavLink)`
   margin-bottom: 10px;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   background-color: white;
   color: black;
   padding: 5px;
