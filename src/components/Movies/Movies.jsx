@@ -1,37 +1,49 @@
-// import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
-  useLocation,
+  // useLocation,
   // NavLink,
   // Outlet,
   useSearchParams,
 } from 'react-router-dom';
 // import PropTypes from 'prop-types';
-import styles from './MoviesStyled';
+// import styles from './MoviesStyled';
 import PageWrap from '../PageWrap';
 import ButtonGoHome from '../ButtonGoHome';
-// import Search from '../Searchbar';
+import Searchbar from '../Searchbar';
 
 import movies from '../../movies.json';
 console.log(movies);
 
-const { Link, MovieListItem } = styles;
+// const { Link, MovieListItem } = styles;
 
-function QueryNavLink({ to, ...props }) {
-  let location = useLocation();
-  return <Link to={to + location.search} {...props} />;
-}
+// function QueryNavLink({ to, ...props }) {
+//   let location = useLocation();
+//   return <Link to={to + location.search} {...props} />;
+// }
 
 function Movies() {
-  let [searchParams, setSearchParams] = useSearchParams({ replace: true });
-  // const [searchString, setSearchString] = useState('');
-  // const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchString, setSearchString] = useState('');
+  // const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
+  const query = searchParams.get('query');
 
-  // const handleSearchSubmit = searchString => {
-  //   setSearchString(searchString);
-  //   setPage(1);
-  //   // console.log('fotos loading');
-  //   // console.log(searchString);
-  // };
+  console.log(page);
+  console.log(setSearchParams);
+  console.log(searchString);
+
+  useEffect(() => {
+    if (query) {
+      console.log('Make request');
+    }
+  }, [query]);
+
+  const handleSearchSubmit = searchString => {
+    setSearchString(searchString);
+    setPage(1);
+    // console.log('fotos loading');
+    // console.log(searchString);
+  };
 
   // const changePage = () => {
   //   setPage(page + 1);
@@ -41,7 +53,8 @@ function Movies() {
     <PageWrap>
       <ButtonGoHome />
 
-      <input
+      <Searchbar propsSubmit={handleSearchSubmit} />
+      {/* <input
         // propsSubmit={handleSearchSubmit}
         value={searchParams.get('filter') || ''}
         onChange={event => {
@@ -73,7 +86,7 @@ function Movies() {
               );
             })}
         </nav>
-      </ul>
+      </ul> */}
     </PageWrap>
   );
 }

@@ -8,6 +8,7 @@ import Movies from '../Movies';
 import OneMovie from '../OneMovie';
 import CastList from '../Cast/CastList';
 import Reviews from '../Reviews';
+
 import movies from '../../movies.json';
 
 console.log(movies);
@@ -26,7 +27,7 @@ const App = () => {
           <Route path="reviews" element={<Reviews />} />
         </Route>
       </Route>
-      <Route path="*" element={<HomePage />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };

@@ -1,49 +1,63 @@
-import { useState } from 'react';
-import { toast } from 'react-toastify';
+// import { useState, useEffect } from 'react';
+// import { toast } from 'react-toastify';
+import { useSearchParams } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import styles from './SearchbarStyled';
 
-const { Searchbar, Form, FormButton, ButtonLabel, FormInput } = styles;
+const { SearchbarWrap, Form, FormButton, ButtonLabel, FormInput } = styles;
 
-function Search({ propsSubmit }) {
-  const [searchString, setSearchString] = useState('');
+function Searchbar({ propsSubmit }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const query = searchParams.get('query');
+  // const [qwery, setQwery] = useState('');
 
-  const handleInputChange = e => {
-    // console.log(e.currentTarget.value);
-    const { value } = e.currentTarget;
-    setSearchString(value.toLowerCase());
-  };
+  // const handleInputChange = e => {
+  //   // console.log(e.currentTarget.value);
+  //   const { value } = e.currentTarget;
+  //   setQwery(value.toLowerCase());
+  // };
+
+  // useEffect(() => {
+  //   if (query) {
+  //     console.log('Make request');
+  //   }
+  // }, [query]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (searchString.trim() === '') {
-      toast.warn('Enter keyword!', {
-        theme: 'colored',
-      });
-      return;
-    }
-    propsSubmit(searchString);
-    setSearchString('');
+    setSearchParams({ query: e.currentTarget.elements.query.value });
+    propsSubmit(searchParams);
   };
 
-  return (
-    <Searchbar>
-      <Form onSubmit={handleSubmit}>
-        <FormButton type="submit">
-          <ButtonLabel>Search</ButtonLabel>
-        </FormButton>
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   if (qwery.trim() === '') {
+  //     toast.warn('Enter keyword!', {
+  //       theme: 'colored',
+  //     });
+  //     return;
+  //   }
+  //   propsSubmit(qwery);
+  //   setQwery('');
+  // };
 
+  return (
+    <SearchbarWrap>
+      <Form onSubmit={handleSubmit} autoComplete="off">
         <FormInput
-          value={searchString}
-          onChange={handleInputChange}
-          name="word"
+          // value={qwery}
+          // onChange={handleInputChange}
+          name="query"
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
+          placeholder="Search movies"
         />
+        <FormButton type="submit">
+          <ButtonLabel>Search</ButtonLabel>
+        </FormButton>
       </Form>
-    </Searchbar>
+    </SearchbarWrap>
   );
 }
 
@@ -51,4 +65,4 @@ function Search({ propsSubmit }) {
 //   propsSubmit: PropTypes.func.isRequired,
 // };
 
-export default Search;
+export default Searchbar;

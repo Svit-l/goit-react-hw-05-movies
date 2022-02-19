@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Outlet } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import PageWrap from '../PageWrap';
 import ButtonGoHome from '../ButtonGoHome';
 import movies from '../../movies.json';
@@ -17,18 +17,18 @@ const {
 } = styles;
 
 const POSTER_URL = 'https://image.tmdb.org/t/p/original/';
-// https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=671e99770535147b22bbc4f5e6f1ab11&language=en-US
 
 function getMovie(id) {
   return movies.find(movie => movie.id === id);
 }
 
 function OneMovie() {
-  let navigate = useNavigate();
-  console.log(navigate);
+  // let navigate = useNavigate();
+  // console.log(navigate);
   let params = useParams();
   let movie = getMovie(parseInt(params.movieId, 10));
 
+  console.log(movie);
   const movieTitle = movie.title ? movie.title : movie.name;
 
   return (

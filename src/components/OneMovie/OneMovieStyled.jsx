@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 const MovieDataWrap = styled.div`
   display: flex;
-  /* background-color: #e1e4ec; */
   border-bottom: thick double #042633;
   width: 100%;
   padding-bottom: 10px;
