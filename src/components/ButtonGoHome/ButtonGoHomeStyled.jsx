@@ -1,19 +1,9 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const ButtonsList = styled.ul`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-`;
-
-export const ButtonItem = styled.li`
-  :not(:last-child) {
-    margin-right: 10px;
-  }
-`;
-
-export const Button = styled.button`
-  text-transform: capitalize;
+const Button = styled(NavLink)`
+  margin-bottom: 10px;
+  font-size: 0.6rem;
   background-color: white;
   color: black;
   padding: 5px;
@@ -30,3 +20,5 @@ export const Button = styled.button`
     border: 1px solid #636363;
   }
 `;
+
+export default Button;

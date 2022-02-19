@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   useLocation,
   NavLink,
@@ -6,6 +7,9 @@ import {
 } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import styles from './MoviesStyled';
+import PageWrap from '../PageWrap';
+import ButtonGoHome from '../ButtonGoHome';
+// import Search from '../Searchbar';
 
 import movies from '../../movies.json';
 console.log(movies);
@@ -19,12 +23,26 @@ function QueryNavLink({ to, ...props }) {
 
 function Movies() {
   let [searchParams, setSearchParams] = useSearchParams({ replace: true });
+  // const [searchString, setSearchString] = useState('');
+  // const [page, setPage] = useState(1);
+
+  // const handleSearchSubmit = searchString => {
+  //   setSearchString(searchString);
+  //   setPage(1);
+  //   // console.log('fotos loading');
+  //   // console.log(searchString);
+  // };
+
+  // const changePage = () => {
+  //   setPage(page + 1);
+  // };
 
   return (
-    <>
-      <button type="button">{<NavLink to="/">Go to homepage</NavLink>}</button>
+    <PageWrap>
+      <ButtonGoHome />
 
       <input
+        // propsSubmit={handleSearchSubmit}
         value={searchParams.get('filter') || ''}
         onChange={event => {
           let filter = event.target.value;
@@ -35,15 +53,15 @@ function Movies() {
           }
         }}
       />
-      <div style={{ display: 'flex' }}>
-        <nav style={{ borderRight: 'solid 1px', padding: '1rem' }}>
+      <ul>
+        <nav>
           {movies
-            .filter(movie => {
-              let filter = searchParams.get('filter');
-              if (!filter) return true;
-              let title = movie.title.toLowerCase();
-              return title.startsWith(filter.toLowerCase());
-            })
+            // .filter(movie => {
+            //   let filter = searchParams.get('filter');
+            //   if (!filter) return true;
+            //   let title = movie.title.toLowerCase();
+            //   return title.startsWith(filter.toLowerCase());
+            // })
             .map(movie => {
               const { id, title, name } = movie;
               return (
@@ -55,9 +73,8 @@ function Movies() {
               );
             })}
         </nav>
-        <Outlet />
-      </div>
-    </>
+      </ul>
+    </PageWrap>
   );
 }
 

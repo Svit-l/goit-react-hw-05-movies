@@ -1,11 +1,11 @@
 import {
   useLocation,
-  NavLink,
-  Outlet,
   // useSearchParams,
 } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import styles from '../Movies/MoviesStyled';
+import HomePageTitle from './HomePageStiled';
+import PageWrap from '../PageWrap';
 
 import movies from '../../movies.json';
 console.log(movies);
@@ -19,8 +19,8 @@ function QueryNavLink({ to, ...props }) {
 
 function HomePage() {
   return (
-    <>
-      <Outlet />
+    <PageWrap>
+      <HomePageTitle>Trending today</HomePageTitle>
       <nav>
         {movies.map(movie => {
           const { id, title, name } = movie;
@@ -33,7 +33,7 @@ function HomePage() {
           );
         })}
       </nav>
-    </>
+    </PageWrap>
   );
 }
 

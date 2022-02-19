@@ -1,4 +1,4 @@
-import { NavLink, useParams, useNavigate } from 'react-router-dom';
+import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import movies from '../../movies.json';
 import movie from '../../oneMovie.json';
@@ -29,6 +29,7 @@ function OneMovie() {
   return (
     <div>
       <button type="button">{<Link to="/">Go to homepage</Link>}</button>
+      <Outlet />
       <img
         src={POSTER_URL + movie['poster_path']}
         alt={movieTitle + ' poster'}

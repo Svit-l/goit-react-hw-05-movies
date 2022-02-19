@@ -48,7 +48,7 @@ img {
 
 a {
   text-decoration: none;
-  /* outline: none; */
+  outline: none;
 }
 
 button{

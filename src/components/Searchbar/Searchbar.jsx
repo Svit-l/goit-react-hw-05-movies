@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import s from './Searchbar.module.css';
+import styles from './SearchbarStyled';
 
-function Searchbar({ propsSubmit }) {
+const { Searchbar, Form, FormButton, ButtonLabel, FormInput } = styles;
+
+function Search({ propsSubmit }) {
   const [searchString, setSearchString] = useState('');
 
   const handleInputChange = e => {
@@ -25,14 +27,13 @@ function Searchbar({ propsSubmit }) {
   };
 
   return (
-    <header className={s.searchbar}>
-      <form className={s.form} onSubmit={handleSubmit}>
-        <button type="submit" className={s.formButton}>
-          <span className={s.buttonLabel}>Search</span>
-        </button>
+    <Searchbar>
+      <Form onSubmit={handleSubmit}>
+        <FormButton type="submit">
+          <ButtonLabel>Search</ButtonLabel>
+        </FormButton>
 
-        <input
-          className={s.formInput}
+        <FormInput
           value={searchString}
           onChange={handleInputChange}
           name="word"
@@ -41,13 +42,13 @@ function Searchbar({ propsSubmit }) {
           autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </Form>
+    </Searchbar>
   );
 }
 
-Searchbar.propTypes = {
-  propsSubmit: PropTypes.func.isRequired,
-};
+// Searchbar.propTypes = {
+//   propsSubmit: PropTypes.func.isRequired,
+// };
 
-export default Searchbar;
+export default Search;
