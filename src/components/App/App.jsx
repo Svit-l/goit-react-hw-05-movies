@@ -1,4 +1,4 @@
-import { NavLink, Outlet, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 // import { useState, useEffect, useCallback } from 'react';
 // import styled from 'styled-components';
 // import GlobalStyle from 'common/GlobalStyles';

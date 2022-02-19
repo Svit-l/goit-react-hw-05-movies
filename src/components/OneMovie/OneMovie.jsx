@@ -1,7 +1,7 @@
 import { NavLink, useParams, useNavigate, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import movies from '../../movies.json';
-import movie from '../../oneMovie.json';
+// import movie from '../../oneMovie.json';
 
 const POSTER_URL = 'https://image.tmdb.org/t/p/original/';
 // https://api.themoviedb.org/3/movie/{movie_id}/images?api_key=671e99770535147b22bbc4f5e6f1ab11&language=en-US
@@ -21,6 +21,7 @@ function getMovie(id) {
 
 function OneMovie() {
   let navigate = useNavigate();
+  console.log(navigate);
   let params = useParams();
   let movie = getMovie(parseInt(params.movieId, 10));
 
